@@ -4,7 +4,9 @@ public enum Endpoints {
 	
 	KEYPRESS("keypress/"),
 	KEYDOWN("keydown/"),
-	KEUP("keyup/");
+	KEUP("keyup/"),
+	APPLIST("query/apps"),
+	CHANNEL("launch/");
 	
 	private String value;
 	
