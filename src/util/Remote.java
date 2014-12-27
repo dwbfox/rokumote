@@ -21,9 +21,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 
-public class Channel {
-	
-}
 
 
 /**
@@ -37,6 +34,20 @@ public class Channel {
 public class Remote {
 
 
+	public class Channel {
+		
+		public final String name;
+		public final int id;
+		public final String version;		
+		
+		public Channel(String name, int id, String version) {
+			this.name = name;
+			this.version = version;
+			this.id = id;
+		}
+	}
+	
+	
 	public String host;
 	public int port; 
 	
@@ -83,6 +94,7 @@ public class Remote {
 				int appID = Integer.parseInt(appElement.getAttributes().getNamedItem("id").getNodeValue());
 				String appType = appElement.getAttributes().getNamedItem("type").getNodeValue();
 				String appVersion = appElement.getAttributes().getNamedItem("version").getNodeValue();
+				_appList.put(appName,);
 				System.out.println(String.format("%s: %s - %s - %s", appName, appID, appType, appVersion));
 			}
 			
