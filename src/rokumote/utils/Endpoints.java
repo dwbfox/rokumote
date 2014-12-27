@@ -1,4 +1,4 @@
-package util;
+package rokumote.utils;
 
 public enum Endpoints {
 	
