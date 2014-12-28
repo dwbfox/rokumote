@@ -35,8 +35,6 @@ import rokumote.utils.Button;
  */
 public class Remote {
 
-
-	
 	public class Channel {
 		
 		public final String name;
@@ -52,12 +50,9 @@ public class Remote {
 		}
 	}
 	
-	
 	public String host;
 	public int port; 
-	
 	private HashMap<String, Channel> _appList = new HashMap<String, Channel>();
-	
 	private final Logger _logger = Logger.getLogger(this.getClass().getCanonicalName());
 	private final String _baseUrl;
 
@@ -68,7 +63,6 @@ public class Remote {
 		_logger.log(Level.INFO, "New Roku instance:  " + this.getHost() + ":" + this.getPort());
 		this._baseUrl = String.format("http://%s:%s/", host, Integer.toString(port));
 	}
-	
 	
 	/**
 	 * Launches the specified channel on the Roku
@@ -84,7 +78,6 @@ public class Remote {
 		String requestUrl = _baseUrl  + Endpoints.CHANNEL.getValue() + channelID;
 		return _makeRequest(requestUrl, "POST");
 	}
-	
 	
 	/**
 	 * Sends the simulated remote button press to the 
@@ -102,7 +95,6 @@ public class Remote {
 		_logger.log(Level.INFO, "Sending keypress: " + requestUrl);	 
 		return _makeRequest(requestUrl, "POST");
 	}
-	
 	
 	/**
 	 * Sends out a key combination to enable
@@ -122,9 +114,7 @@ public class Remote {
 		sendDirection(Button.RIGHT);
 		sendDirection(Button.LEFT);
 		sendDirection(Button.RIGHT);
-
 	}
-	
 	
 	/**
 	 * Returns a hash map of all channels 
@@ -139,7 +129,6 @@ public class Remote {
 		String requestUrl = _baseUrl + Endpoints.APPLIST.getValue();
 		String data = _makeRequestData(requestUrl, "GET");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		
 		try {
 			DocumentBuilder docBuilder = dbFactory.newDocumentBuilder();
 			InputSource source = new InputSource(new StringReader(data));
@@ -155,7 +144,6 @@ public class Remote {
 				String appVersion = appElement.getAttributes().getNamedItem("version").getNodeValue();
 				_appList.put(appName, new Channel(appName, appID, appVersion, appType));
 			}
-			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			_logger.log(Level.SEVERE, "Failed to parse XML: " + e.getMessage());
 			return null;
